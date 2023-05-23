@@ -3,7 +3,8 @@
 #include<string.h>
 #define MAX_STORE_STORAGE 10000 
 
-typedef enum { SMALL, MEDIUM, LARGE } ProductSize;
+typedef enum { S, M, L } ProductSize;
+
 
 typedef struct{
 char name[50];
@@ -30,14 +31,6 @@ int  num_purchases;
 }Customer;
 
 void managementMode();
-
-//  Affichage du menu principal //
-void showMenu() {
-    printf("--- MAIN MENU ---\n");
-    printf("1. MANAGEMENT MODE\n");
-    printf("2. BUYING MODE\n");
-    printf("3. LEAVE\n");
-}
 
 
 void logorsignin(Login *a) {
@@ -84,6 +77,7 @@ void logorsignin(Login *a) {
                 }
             }
             fclose(fichier_login);
+             
             break;
         case 2:
             // New user sign up
@@ -172,9 +166,11 @@ void logorsignin(Login *a) {
                 }
             }
             fclose(fichier_login_new);
+            
             break;
         case 3:
             printf("Quitting...\n");
+            
             exit(0);
         default:
             printf("Error: Choose a correct option.\n");
@@ -254,6 +250,7 @@ void ShowRemainingSpace(Product products[], int num_products) {
 void increaseStock(Product *products, int num_products) {
     int ref_num, quantity;
     int choice;
+
     printf("Enter the reference number of the product you want to restock: ");
     scanf("%d", &ref_num);
 
@@ -283,6 +280,7 @@ void increaseStock(Product *products, int num_products) {
     }
 
     if (!found) {
+        clearScreen();
         printf("Product not found.\n");
         printf("\n----------\n");
         printf("1. Retry\n");
@@ -295,10 +293,13 @@ void increaseStock(Product *products, int num_products) {
         }
         if (choice == 1) {
             increaseStock(products, num_products);  // Retry the function
+      
         } else if (choice == 2) {
+      
             return;  // Return back to the management mode
         } else if (choice == 3) {
             printf("\nQuitting...\n");
+            
             exit(0);
         }
     }
@@ -326,10 +327,13 @@ void increaseStock(Product *products, int num_products) {
 
     if (choice == 1) {
         increaseStock(products, num_products);
+      
     } else if (choice == 2) {
         managementMode();
+  
     } else if (choice == 3) {
         printf("\nQuitting...\n");
+        
         exit(0);
     }
 }
@@ -363,10 +367,13 @@ void showStock(Product *products, int num_products) {
             }
             if (choice == 1) {
                 showStock(products,num_products);
+                
             } else if (choice == 2) {
                 managementMode();
+          
             } else if (choice == 3) {
                 printf("\nQuitting...\n");
+                
                 exit(0);
             }
             found = 1;
@@ -385,10 +392,13 @@ void showStock(Product *products, int num_products) {
         }
         if (choice == 1) {
             showStock(products, num_products); 
+          
         } else if (choice == 2) {
             managementMode();
+            
         } else if (choice == 3) {
             printf("\nQuitting...\n");
+            
             exit(0);
         }
     }
@@ -424,13 +434,16 @@ void managementMode() {
     }
     if (choice == 1) {
         showStock(products, num_products);
+        
     }
     else if (choice == 2) {
         increaseStock(products, num_products);
+        
     }
     else if (choice == 3) {
                 printf("\nExiting management mode...\n");
                 free(products);
+                
                 return;
     }
 }
@@ -444,7 +457,6 @@ void buying(char* clientID) {
     }
 
     int num, i;
-    int t = 0;
     float pricee = 0;
     int m = 0;
     Product a;
@@ -453,7 +465,6 @@ void buying(char* clientID) {
     }
     if (m == 0) {
         printf("There is NOTHING in your buying cart\n");
-        t = 1;
     }
     else {
         num = m;
@@ -502,13 +513,12 @@ void buying(char* clientID) {
 
             fclose(clientFile);
             fclose(buyingcart);
-            t = 1;  // Purchase confirmed
 
             // Reset the buying cart
             FILE* resetBuy = fopen("buy.txt", "w");
             if (resetBuy == NULL) {
                 printf("Failed to reset the buying cart.\n");
-                return t;
+                return ;
             }
             fclose(resetBuy);
         }
@@ -846,18 +856,45 @@ void purchasehistory(char* clientID){
     printf("\n--- Purchase History ---\n\n");
 
     // Print the rest of the file as purchase history
-    int hasHistory = 0;
+    /*int hasHistory = 0;
     while (fgets(line, sizeof(line), client_file) != NULL) {
         if (strcmp(line, "\n") != 0) {
             printf("%s", line);
             hasHistory = 1;
         }
+    }*/
+ int totalLines = 0;
+    int lastThreeLines = 0;
+    while (fgets(line, sizeof(line), client_file) != NULL) {
+        totalLines++;
     }
+    fseek(client_file, 0, SEEK_SET);  // Reset file pointer to the beginning
+  while (fgets(line, sizeof(line), client_file) != NULL) {
+        if (strcmp(line, "\n") == 0) {
+            break;
+        }
+    
+  if(totalLines==0){
+    printf("No articles bought yet.\n");
+  }
+else{
+    while (fgets(line, sizeof(line), client_file) != NULL) {
+        if (strcmp(line, "\n") != 0) {
+            lastThreeLines++;
+            if (lastThreeLines > totalLines - 3) {
+                printf("%s", line);
+            }
+        }
+    }
+}
+      
+  
 
-    if (!hasHistory) {
+   /* if (!hasHistory) {
         printf("No articles bought yet.\n");
-    }
+    }*/
     fclose(client_file);
+}
 }
 
 
@@ -968,18 +1005,22 @@ void deleteClient(char* clientID) {
        searcharticle();
        printf("\n\n");
        menubuy(clientId);
+       
            break;
      case 2:
        buysomething();
        printf("\n\n");
        menubuy(clientId);
+       
            break;
      case 3 :
      buying(clientId);
        printf("\n\n");
      menubuy(clientId);
+     
      case 4 :
      deleteClient(clientId);
+     
       case 5:
       return;
    }
@@ -1004,3 +1045,11 @@ int main(void) {
 
   return 0;
 }
+
+
+
+                                                      
+                                                      
+                                                      
+                                                      
+                                                      
