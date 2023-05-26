@@ -17,16 +17,16 @@ You need the files:
 - idandpassword.txt
 - product.txt
 - products2.txt
-and of course a good terminal
+
 
 #### Starting
 
 ##### Site used for coding
 
-https://github.com/
-https://replit.com/~
+*https://github.com/
+*https://replit.com/~
 
 ###### Author
-MOUHAMADIMAME Tawfik alias @tawfik14
-BENMANSOUR Firas alias @firasbenmansour
+*MOUHAMADIMAME Tawfik alias @tawfik14
+*BENMANSOUR Firas alias @firasbenmansour
 
