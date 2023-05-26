@@ -26,12 +26,12 @@ linux:
 - Type cd followed by a space and the location the program files are saved to
 - Type gcc -o CYSHOP CY_SHOP.c
 - Type ./CYSHOP  
-  And now you can use the program
+- And now you can use the program
 
  Other like replit:
 - Add the files
 - Run the program  
- And now you can use it
+- And now you can use it
 
 ##### Site used for coding
 
@@ -39,6 +39,6 @@ linux:
  https://replit.com/~
 
 ###### Author
- MOUHAMADIMAME Tawfik alias @tawfik14  
- BENMANSOUR Firas alias @firasbenmansour
+MOUHAMADIMAME Tawfik alias @tawfik14  
+BENMANSOUR Firas alias @firasbenmansour
 
