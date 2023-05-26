@@ -21,16 +21,16 @@ You need the files:
 
 #### Starting
 linux: 
--save the files on a personnel space
--open the Terminal
--Type cd followed by a space and the location the program files are saved to
--Type gcc -o CYSHOP CY_SHOP.c
--Type ./CYSHOP
+- save the files on a personnel space
+- open the Terminal
+- Type cd followed by a space and the location the program files are saved to
+- Type gcc -o CYSHOP CY_SHOP.c
+- Type ./CYSHOP
 And now you can use the program
 
 Other like replit:
--Add the files
--Run the program
+- Add the files
+- Run the program
 And now you can use it
 
 ##### Site used for coding
