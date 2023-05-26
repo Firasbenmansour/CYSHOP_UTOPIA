@@ -29,7 +29,7 @@ linux:
  
  And now you can use the program
 
- Other like replit:
+ Others like replit:
 - Add the files
 - Run the program  
  
