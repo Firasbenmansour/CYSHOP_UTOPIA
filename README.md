@@ -1,4 +1,4 @@
-# CYSHOP
+# CY_SHOP
 CY SHOP is a project for managing a store's stock and its customers, in this case the UTOPIA store.
 It's a program for managing stocks: adding stocks of a product when there are none left, information on remaining places in the shop etc... and managing customers who want to buy products: search bar, product menu, shopping basket etc... to help customers with their purchases. 
 This program also comes with a login function to access the different modes and create an UTOPIA shop account.  
@@ -21,7 +21,17 @@ You need the files:
 
 #### Starting
 linux: 
-save and use the file
+-save the files on a personnel space
+-open the Terminal
+-Type cd followed by a space and the location the program files are saved to
+-Type gcc -o CYSHOP CY_SHOP.c
+-Type ./CYSHOP
+And now you can use the program
+
+Other like replit:
+-Add the files
+-Run the program
+And now you can use it
 
 ##### Site used for coding
 
