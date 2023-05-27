@@ -6,7 +6,6 @@
 #include<string.h>
 
 
-typedef enum { S, M, L } ProductSize;
 
 typedef struct{
 char name[50];
@@ -22,7 +21,7 @@ typedef struct {
     int ref_num;
     int quantity;
     float price;
-    ProductSize size;
+    int size;
 } Product;
 
 typedef struct {
