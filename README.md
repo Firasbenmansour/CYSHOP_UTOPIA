@@ -10,7 +10,7 @@ This program also comes with a login function to access the different modes and 
 
 ### Requirements
 You need the files:
-- main.C
+- main.c
 - management.c
 - management.h
 - buying.c
