@@ -1,7 +1,8 @@
 # CY_SHOP 
 CY SHOP is a project for managing a store's stock and its customers, in this case the UTOPIA store.
-It's a program for managing stocks: adding stocks of a product when there are none left, information on remaining places in the shop etc... and managing customers who want to buy products: search bar, product menu, shopping basket etc... to help customers with their purchases. 
-This program also comes with a login function to access the different modes and create an UTOPIA shop account.  
+It serves as a versatile program that efficiently handles stock-related tasks such as replenishing products, tracking available space in the shop, and providing essential information to store managers.The program also offers customer management capabilities as the it offers a user-friendly interface equipped with a search bar, product menu, and shopping basket, empowering customers to easily browse and select their desired items. 
+Additionally, CY SHOP incorporates a secure login function that enables authorized users to access various modes within the program.  
+
 ## Table of Contents
 1. Requirements
 2. Starting
