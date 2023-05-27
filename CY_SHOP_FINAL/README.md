@@ -10,13 +10,20 @@ This program also comes with a login function to access the different modes and 
 
 ### Requirements
 You need the files:
-- CY_SHOP.C
+- main.C
+- management.c
+- management.h
+- buying.c
+- buying.h
+- logOrSignin.c
+- logOrSignin.h
+- makefile
 - Feedback.txt
 - README.md
 - buy.txt
 - idandpassword.txt
 - product.txt
-- products2.txt
+- product_m.txt
 
 
 #### Starting
@@ -24,8 +31,8 @@ linux:
 - save the files on a personnel space
 - open the Terminal
 - Type cd followed by a space and the location the program files are saved to
-- Type gcc -o CYSHOP CY_SHOP.c
-- Type ./CYSHOP  
+- Type make
+- Type ./UTOPIA
  
  And now you can use the program
 

@@ -78,6 +78,20 @@ void buying(char* clientID) {
             fclose(resetBuy);
         }
         else {
+          printf("Keep items in the cart? (1: Yes, 0: No): ");
+            int keepItems;
+            scanf("%d", &keepItems);
+            while (getchar() != '\n');
+
+            if (keepItems == 0) {
+                // Reset the buying cart
+                FILE* resetBuy = fopen("buy.txt", "w");
+                if (resetBuy == NULL) {
+                    printf("Failed to reset the buying cart.\n");
+                    return;
+                }
+                fclose(resetBuy);
+            }
             printf("Purchase canceled.\n");
         }
     }
@@ -88,7 +102,7 @@ void buying(char* clientID) {
 
 
 void buysomething(){
-  int c,i,d;
+  int c,i;
   char nameb[100];
   int ref_num;
   int h=0;
@@ -129,12 +143,16 @@ void buysomething(){
             printf("The article has been aded to cart\n");
             h=1;
             fclose(buycart);
+            fclose(buy);
           }
      
         }
         if(h==0){
         printf("We can't find the article\n");
+        fclose(buycart);
+        fclose(buy);
         }
+  
     break;
 
     case 2 :
@@ -150,12 +168,18 @@ void buysomething(){
             h=1;
             printf("The article has been aded to cart\n");
             fclose(buycart);
+            fclose(buy);
         }
       }
       if(h==0){
         printf("We can't find the article\n");
+        fclose(buycart);
+        fclose(buy);
       }
+ 
+    break;
   }
+  
 }
 
 
@@ -165,7 +189,7 @@ void affiche_articlemenu(int a,int b){
   FILE*menu=fopen("product.txt","r+");
   if (menu == NULL) {
   exit(1);
-}
+  }
     int num_productsss;
     fscanf(menu,"%d", &num_productsss);
     Product*prod=malloc(num_productsss*sizeof(Product));
@@ -180,14 +204,14 @@ void affiche_articlemenu(int a,int b){
       if(i>=1 && i<18){
       
      printf("%s (ref : %d)    price: %.2f$\n ",prod[i].name,prod[i].ref_num,prod[i].price);
+      }
     }
-  }
     if(b==2){
        
        if(i>=18 && i<28){
     
     printf("%s (ref : %d)    price: %.2f$\n ",prod[i].name,prod[i].ref_num,prod[i].price);
-     }
+       }
     }
 
      if(a==3){
@@ -195,48 +219,48 @@ void affiche_articlemenu(int a,int b){
        if(i>=28 && i<46){
     
     printf("%s (ref : %d)    price: %.2f$\n ",prod[i].name,prod[i].ref_num,prod[i].price);
+       }
      }
-    }
 
      if(a==7){
         
        if(i>=46 && i<60){
    
     printf("%s (ref : %d)    price: %.2f$\n ",prod[i].name,prod[i].ref_num,prod[i].price);
+       }
      }
-    }
 
      if(a==6){
         
        if(i>=60 && i<66){
     
     printf("%s (ref : %d)    price: %.2f$\n ",prod[i].name,prod[i].ref_num,prod[i].price);
+       }
      }
-    }
 
      if(a==4){
         
        if(i>=66 && i<78){
     
     printf("%s (ref : %d)    price: %.2f$\n ",prod[i].name,prod[i].ref_num,prod[i].price);
+       }
      }
-    }
 
      if(a==2){
         
        if(i>=78 && i<93){
     
     printf("%s (ref : %d)    price: %.2f$\n ",prod[i].name,prod[i].ref_num,prod[i].price);
+       }
      }
-    }
 
      if(a==5){
         
        if(i>=93 && i<102){
     
     printf("%s (ref : %d)    price: %.2f$\n ",prod[i].name,prod[i].ref_num,prod[i].price);
+       }
      }
-    }
 
  
     
@@ -249,11 +273,9 @@ void searcharticle(){
   char name[100];
   int searching;
   int ref;
-  char ser[50];
   int choice,choice2=0;
   int g=0;
-  FILE*fichier=fopen("product.txt","r+");
-  //Display a search menu
+
   do{
   printf("How do you want to research?\n");
   printf("1. reference\n");
@@ -337,10 +359,10 @@ if (g == 0) {
      printf("7. JACKETS\n");
      printf("Choice : ");
      scanf("%d", &choice);
-           if(choice<1 || choice>7){
+           if(choice<1 || choice>7){ 
              printf("Choose a correct option\n");
            }
-     } while (choice<1 || choice>7);
+        } while (choice<1 || choice>7);
     
     while (getchar() != '\n');
     //Depending on the category chosen we will use different numbers as parameters for the fonction affiche_articlemenu 
@@ -399,8 +421,8 @@ if (g == 0) {
       
       
     }
-
-}
+  break;
+ }
 }
 
 
@@ -416,7 +438,6 @@ void purchasehistory(char* clientID){
     }
 
     char line[100];
-    int isBuyingHistory = 0;
 
     // Skip lines with client information until the empty line
     while (fgets(line, sizeof(line), client_file) != NULL) {
@@ -455,10 +476,10 @@ else{
         if (lastThreeLines >= totalLines - 2 && strcmp(line, "\n") != 0) {
                 printf("%s", line);
             }
-    }
-}
+     } 
+   }
     fclose(client_file);
-}
+ }
 }
 
 
@@ -540,16 +561,15 @@ void deleteClient(char* clientID) {
         }
 
         printf("Your account has been deleted successfully.\n");
-    } else {
+    }
+    else {
         printf("Account deletion cancelled.\n");
     }
 }
 
 
-
- void menubuy(char* clientId){
+void menubuy(char* clientId){
   int menuu;
-   int s;
    purchasehistory(clientId);
 
    //Display the buy mode menu, to choose an option until a right choice
@@ -570,28 +590,30 @@ void deleteClient(char* clientID) {
 
    //Will use different function according to user choice
    switch(menuu){
-     case 1:
+      case 1 :
        searcharticle();
        printf("\n\n");
        menubuy(clientId);
-       
-           break;
-     case 2:
+       break;
+     
+      case 2 :
        buysomething();
        printf("\n\n");
        menubuy(clientId);
-       
-           break;
-     case 3 :
-     buying(clientId);
+       break;
+     
+      case 3 :
+       buying(clientId);
        printf("\n\n");
-     menubuy(clientId);
+       menubuy(clientId);
+       break;
      
      case 4 :
-     deleteClient(clientId);
+       deleteClient(clientId);
+       break;
      
-      case 5:
+    case 5 :
       return;
    }
- }
+}
 

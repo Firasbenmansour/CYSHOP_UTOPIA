@@ -2,6 +2,7 @@
 #include "structures.h"
 #define MAX_STORE_STORAGE 10000 
 
+
 void Showrestockneeds(Product products[], int num_products) {
     printf("\n--- Products with 0 stock ---\n");
     int zero_stock = 0;
@@ -125,7 +126,7 @@ void increaseStock(Product *products, int num_products) {
             exit(0);
         }
     }
-    FILE *fp = fopen("products2.txt", "w");
+    FILE *fp = fopen("product_m.txt", "w");
     if (fp == NULL) {
         printf("Error opening file.\n");
         return;
@@ -253,7 +254,7 @@ void managementMode() {
     printf("\n--- MANAGEMENT MODE ---\n");
 
     // Open the file containing product information
-    FILE *fp = fopen("products2.txt", "r");
+    FILE *fp = fopen("product_m.txt", "r");
     if (fp == NULL) {
         printf("Error opening file.\n");
         return;
@@ -286,7 +287,7 @@ void managementMode() {
     // Read and validate the user's choice
     while (scanf("%d", &choice) != 1 || choice < 1 || choice > 3) {
         printf("Invalid choice. Please enter a number between 1 and 3: ");
-        while (getchar() != '\n');
+        while (getchar() != '\n'); //clear buffer
     }
 
     // Perform the selected operation based on the user's choice
